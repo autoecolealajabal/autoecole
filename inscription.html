@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Permis B Classique | Aljabal Azilal</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body>
+    <header class="header scrolled">
+        <nav class="nav container">
+            <a href="/" class="logo">
+                <span class="gold">ALJABAL</span> <span class="white">AZILAL</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="/#services" class="nav-link">Services</a></li>
+                <li><a href="/#about" class="nav-link">À Propos</a></li>
+                <li><a href="/#contact" class="nav-link btn-gold">Contact</a></li>
+            </ul>
+
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="page-header-bg"
+                style="background-image: url('./bg_final.jpg'); background-size: cover; background-position: center;">
+            </div>
+            <div class="page-header-overlay"></div>
+            <div class="container" data-reveal="bottom">
+                <h1 class="hero-tagline gold">Candidature</h1>
+                <h2 class="section-title" id="page-title">Demande d'<span class="gold-text">Inscription</span></h2>
+            </div>
+        </section>
+
+        <!-- Registration Form Section -->
+        <section class="registration-section">
+            <div class="container">
+                <div class="registration-container" data-reveal="bottom" data-delay="200">
+                    <form id="registration-form">
+                        <div class="form-group">
+                            <label for="service">Service Souhaité</label>
+                            <select id="service" name="service" required
+                                style="width: 100%; padding: 15px; background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1rem;">
+                                <option value="permis-b">Permis B Classique</option>
+                                <option value="vip">Pack VIP Aljabal</option>
+                                <option value="accelere">Code Accéléré</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="full-name">Nom complet</label>
+                            <input type="text" id="full-name" name="full-name" placeholder="Ex: Ahmed El Mansouri"
+                                required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="birth-date">Date de naissance</label>
+                                <input type="date" id="birth-date" name="birth-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="birth-place">Lieu de naissance</label>
+                                <input type="text" id="birth-place" name="birth-place" placeholder="Ex: Azilal"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cnie">Numéro de CNIE</label>
+                            <input type="text" id="cnie" name="cnie" placeholder="Ex: AB123456" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Adresse de résidence</label>
+                            <textarea id="address" name="address" rows="3"
+                                placeholder="Votre adresse complète à Azilal ou environs..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="primary-btn submit-btn">Envoyer ma demande</button>
+                    </form>
+
+                    <a href="/" class="back-link">
+                        <i class="fa-solid fa-arrow-left"></i> Retour à l'accueil
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Auto École Aljabal Azilal. Prestige & Excellence.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script>
+        // Pre-select service based on URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceParam = urlParams.get('service');
+        const serviceSelect = document.getElementById('service');
+        const pageTitle = document.getElementById('page-title');
+
+        if (serviceParam && serviceSelect) {
+            serviceSelect.value = serviceParam;
+
+            // Update title visually
+            if (serviceParam === 'vip') {
+                pageTitle.innerHTML = 'Pack VIP <span class="gold-text">Aljabal</span>';
+            } else if (serviceParam === 'accelere') {
+                pageTitle.innerHTML = 'Code <span class="gold-text">Accéléré</span>';
+            } else if (serviceParam === 'permis-b') {
+                pageTitle.innerHTML = 'Permis B <span class="gold-text">Classique</span>';
+            }
+        }
+
+        document.getElementById('registration-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const selectedService = serviceSelect.options[serviceSelect.selectedIndex].text;
+            const fullName = document.getElementById('full-name').value;
+            const birthDate = document.getElementById('birth-date').value;
+            const birthPlace = document.getElementById('birth-place').value;
+            const cnie = document.getElementById('cnie').value;
+            const address = document.getElementById('address').value;
+
+            const message = `*Nouvelle Inscription - Auto École Aljabal*%0A%0A` +
+                `*Service:* ${selectedService}%0A` +
+                `*Nom:* ${fullName}%0A` +
+                `*Date de Naissance:* ${birthDate}%0A` +
+                `*Lieu de Naissance:* ${birthPlace}%0A` +
+                `*CNIE:* ${cnie}%0A` +
+                `*Adresse:* ${address}`;
+
+            const whatsappUrl = `https://wa.me/212760316075?text=${message}`;
+
+            alert(`Félicitations ! Votre demande pour le "${selectedService}" est prête. Vous allez être redirigé vers WhatsApp pour l'envoyer.`);
+            window.location.href = whatsappUrl;
+        });
+    </script>
+</body>
+
+</html>
